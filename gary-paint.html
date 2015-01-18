@@ -1,0 +1,74 @@
+<html>
+
+<script language="JavaScript">
+paint=0;
+pid='';
+sdata='0';
+var x = new Array(15);
+for(i=0;i<=15;i++)
+{x[i]= new Array(15);}
+
+for(i=0;i<=15;i++)
+{
+	for(j=0;j<=15;j++)
+	{
+		x[i][j]=0;
+	}
+}
+
+function paintpictopanel()
+{
+spictopanel='<table border="1" width="450" height="450" style="border-collapse:collapse;">';
+for(i=0;i<15;i++){
+	spictopanel+='<tr>';
+	for(j=0;j<15;j++){
+		spictopanel+='<td onmousedown="paint=1;cClick(this,'+i+','+j+');" onmousemove="cClick(this,'+i+','+j+')" onmouseup="paint=0;" id="c['+i+']['+j+']"></td>';
+	}
+	spictopanel+='</tr>';
+} 
+spictopanel+='</table>';
+document.getElementById('pictopanel').innerHTML=spictopanel;
+if(sdata!=''){jrepaint(sdata);}
+}
+
+window.onload = function()
+{	document.getElementById('panel').onselectstart = function()
+     {return false;} 
+}
+
+function cClick(cg,a,b) {
+	if(paint==1)
+	{
+		switch(event.button)
+		{
+			case 0:
+				cg.bgColor = 'RED';
+				x[a][b]=1;
+				break;
+			case 1:
+				cg.bgColor = 'RED';
+				x[a][b]=1;
+				break;
+			case 2:
+				cg.bgColor = '';
+				x[a][b]=0;
+				document.oncontextmenu=new Function('return false');
+				break;
+		}
+		document.getElementById('shpanel').style.display='none';
+		document.getElementById('bbshare').className='bok';
+		pid='';
+	}
+}
+
+
+</script>
+
+
+
+<body onload="paintpictopanel();">
+
+            <td><div id="pictopanel"><table border="1" width="450" height="450"></table></div></td>
+     
+</body>
+</html>
